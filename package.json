@@ -81,7 +81,7 @@
     "@zeit/ncc": "0.22.3",
     "bob-the-bundler": "7.0.1",
     "eslint": "8.57.1",
-    "graphql": "16.9.0",
+    "graphql": "16.10.0",
     "graphql-config": "5.1.0",
     "jsesc": "3.0.2",
     "lint-staged": "15.2.8",
@@ -103,7 +103,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@octokit/types": "5.5.0"
+      "@octokit/types": "5.5.0",
+      "graphql": "16.10.0"
     }
   }
 }

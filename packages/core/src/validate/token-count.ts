@@ -1,6 +1,6 @@
 import type { ParseOptions, Source } from 'graphql';
 import { DocumentNode, GraphQLError, TokenKind, visit } from 'graphql';
-import { Parser } from 'graphql/language/parser.js';
+import { Parser } from 'graphql/language/parser';
 
 class ParserWithLexer extends Parser {
   private __tokenCount = 0;

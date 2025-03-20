@@ -78,6 +78,6 @@ export function parseGlobalArgs(args: GlobalArgs) {
   return { headers, leftHeaders, rightHeaders, token: args.token };
 }
 
-export async function mockCommand(mod: Command, cmd: string) {
-  return yargs(hideBin(process.argv)).command(mod).parseAsync(cmd);
+export function mockCommand(mod: Command, cmd: string) {
+  return yargs(hideBin(process.argv)).command(mod).exitProcess(false).parseAsync(cmd);
 }
