@@ -64,11 +64,11 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-tools/git-loader": "8.0.6",
+    "@graphql-tools/git-loader": "8.0.24",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@babel/core": "7.24.6",
+    "@babel/core": "7.26.10",
     "graphql": "16.9.0"
   },
   "publishConfig": {
