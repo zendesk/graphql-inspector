@@ -32,6 +32,7 @@
     "check": "bob check",
     "lint": "eslint --cache --ignore-path .gitignore .",
     "lint:prettier": "prettier --cache --check .",
+    "postinstall": "husky install",
     "prebuild": "rimraf \"packages/**/dist/\"",
     "precommit": "lint-staged",
     "prerelease": "pnpm action",
@@ -92,7 +93,8 @@
     "smee-client": "2.0.2",
     "strip-ansi": "7.1.0",
     "typescript": "5.5.4",
-    "vitest": "0.34.6"
+    "vitest": "0.34.6",
+    "wrangler": "4.2.0"
   },
   "sideEffects": false,
   "lint-staged": {
