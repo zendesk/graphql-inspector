@@ -191,7 +191,7 @@ function getRandomElement(ary: ReadonlyArray<any>) {
   return ary[sample];
 }
 
-function mergeObjects(a: Object, b: Object) {
+function mergeObjects(a: object, b: object) {
   return Object.assign(a, b);
 }
 

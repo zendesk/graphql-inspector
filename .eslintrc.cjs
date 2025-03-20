@@ -1,6 +1,12 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['action/index.js'],
+  ignorePatterns: [
+    'action/index.js',
+    'vite.config.ts',
+    'example/schemas/schema.js',
+    'example/rules/custom-rule.js',
+    'integration_tests/2027/unused-hotels.js',
+  ],
   extends: ['@theguild', '@theguild/eslint-config/json', '@theguild/eslint-config/yml'],
   overrides: [
     {
@@ -8,7 +14,7 @@ module.exports = {
       extends: '@theguild/eslint-config/react',
     },
     {
-      files: ['**'],
+      files: ['packages/**', 'website/**'],
       rules: {
         'logical-assignment-operators': 'off',
         'prefer-object-has-own': 'off', // enable in next major
@@ -25,6 +31,9 @@ module.exports = {
         'unicorn/prefer-node-protocol': 'off',
         'no-console': 'off',
         'import/no-default-export': 'off',
+        '@typescript-eslint/no-empty-object-type': 'off',
+        '@typescript-eslint/no-require-imports': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
       },
     },
     {

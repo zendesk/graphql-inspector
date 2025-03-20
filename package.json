@@ -104,7 +104,8 @@
   "pnpm": {
     "overrides": {
       "@octokit/types": "5.5.0",
-      "graphql": "16.10.0"
+      "graphql": "16.10.0",
+      "eslint-plugin-unicorn": "56.0.1"
     }
   }
 }
