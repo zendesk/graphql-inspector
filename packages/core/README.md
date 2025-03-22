@@ -1,6 +1,6 @@
 # GraphQL Inspector
 
-[![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-inspector.svg?style=shield&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/kamilkisiela/graphql-inspector)
+[![CircleCI](https://circleci.com/gh/graphql-hive/graphql-inspector.svg?style=shield&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/graphql-hive/graphql-inspector)
 [![npm version](https://badge.fury.io/js/@graphql-inspector/core.svg)](https://npmjs.com/package/@graphql-inspector/core)
 
 **GraphQL Inspector** outputs a list of changes between two GraphQL schemas. Every change is
@@ -54,4 +54,4 @@ const schemaCoverage: SchemaCoverage = coverage(schema, documents)
 
 ## License
 
-[MIT](https://github.com/kamilkisiela/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela
+[MIT](https://github.com/graphql-hive/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela

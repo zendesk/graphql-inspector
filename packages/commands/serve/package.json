@@ -5,7 +5,7 @@
   "description": "Serves GraphQL Schemma",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
+    "url": "graphql-hive/graphql-inspector",
     "directory": "packages/commands/docs"
   },
   "author": {

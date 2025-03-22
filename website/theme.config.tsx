@@ -4,7 +4,7 @@ import { defineConfig, Giscus, PRODUCTS, useTheme } from '@theguild/components';
 
 export default defineConfig({
   description: 'GraphQL schema management and evolution tools',
-  docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website', // base URL for the docs repository
+  docsRepositoryBase: 'https://github.com/graphql-hive/graphql-inspector/tree/master/website', // base URL for the docs repository
   logo: PRODUCTS.INSPECTOR.logo({ className: 'w-9' }),
   main: function Main({ children }) {
     const { resolvedTheme } = useTheme();
@@ -14,7 +14,7 @@ export default defineConfig({
       <Giscus
         // ensure giscus is reloaded when client side route is changed
         key={route}
-        repo="kamilkisiela/graphql-inspector"
+        repo="graphql-hive/graphql-inspector"
         repoId="MDEwOlJlcG9zaXRvcnkxNTc3NzY4MjQ="
         category="Docs Discussions"
         categoryId="DIC_kwDOCWd7uM4CSDVl"

@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "kamilkisiela/graphql-inspector"
+      "repo": "graphql-hive/graphql-inspector"
     }
   ],
   "commit": false,

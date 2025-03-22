@@ -50,7 +50,7 @@ import { Change, diff } from '@graphql-inspector/core'
 const changes: Change[] = diff(schemaA, schemaB)
 ```
 
-![Diff](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/diff.jpg)
+![Diff](https://raw.githubusercontent.com/graphql-hive/graphql-inspector/master/assets/diff.jpg)
 
 ### Find similar types
 
@@ -68,7 +68,7 @@ import { similar, SimilarMap } from '@graphql-inspector/core'
 const similar: SimilarMap = similar(schema, typename, threshold)
 ```
 
-![Similar](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/similar.jpg)
+![Similar](https://raw.githubusercontent.com/graphql-hive/graphql-inspector/master/assets/similar.jpg)
 
 ### Check coverage
 
@@ -87,7 +87,7 @@ import { coverage, SchemaCoverage } from '@graphql-inspector/core'
 const schemaCoverage: SchemaCoverage = coverage(schema, documents)
 ```
 
-![Coverage](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/coverage.jpg)
+![Coverage](https://raw.githubusercontent.com/graphql-hive/graphql-inspector/master/assets/coverage.jpg)
 
 ### Validate documents
 
@@ -105,7 +105,7 @@ import { InvalidDocument, validate } from '@graphql-inspector/core'
 const invalid: InvalidDocument[] = validate(documentsGlob, schema)
 ```
 
-![Validate](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/validate.jpg)
+![Validate](https://raw.githubusercontent.com/graphql-hive/graphql-inspector/master/assets/validate.jpg)
 
 ### Audit documents
 
@@ -197,7 +197,7 @@ $ graphql-inspector-github
 
 Get GitHub annotations in your PRs.
 
-![GitHub](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/github.jpg)
+![GitHub](https://raw.githubusercontent.com/graphql-hive/graphql-inspector/master/assets/github.jpg)
 
 ### CLI in more details
 
@@ -300,4 +300,4 @@ Find out what the CLI is capable of:
 
 ## License
 
-[MIT](https://github.com/kamilkisiela/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela
+[MIT](https://github.com/graphql-hive/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela

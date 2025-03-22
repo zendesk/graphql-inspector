@@ -78,4 +78,4 @@ from [Contributor Covenant](https://www.contributor-covenant.org/)
 
 ## License
 
-[MIT](https://github.com/kamilkisiela/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela
+[MIT](https://github.com/graphql-hive/graphql-inspector/blob/master/LICENSE) © Kamil Kisiela

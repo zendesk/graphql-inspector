@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - uses: kamilkisiela/graphql-inspector@master
+      - uses: graphql-hive/graphql-inspector@master
         with:
           schema: 'master:schema.graphql'
 ```
@@ -54,12 +54,12 @@ In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from
 results. For example, "Check Public API" and "Check Internal API".
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     name: Validate Public API
     schema: 'master:public.graphql'
 
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     name: Check Internal API
     schema: 'master:internal.graphql'
@@ -70,7 +70,7 @@ results. For example, "Check Public API" and "Check Internal API".
 Use annotation (`true` by default).
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
     annotations: false
@@ -81,7 +81,7 @@ Use annotation (`true` by default).
 Fail on breaking changes (`true` by default).
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
     fail-on-breaking: false
@@ -94,7 +94,7 @@ Inspector fails the Pull Request when it detects any breaking changes (`approved
 default).
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
     approve-label: expected-breaking-change
@@ -108,7 +108,7 @@ in `approve-label`.
 Use GraphQL API endpoint as a source of schema. It should represent the "before" schema.
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: schema.graphql # important to define a path to schema file, without a branch
     endpoint: 'https://my-app.com/graphql'
@@ -117,7 +117,7 @@ Use GraphQL API endpoint as a source of schema. It should represent the "before"
 If you want to use GraphQL API endpoint as source of "after" schema:
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'https://pr-1234.my-app.dev/graphql'
     endpoint: 'https://my-app.com/graphql'
@@ -129,7 +129,7 @@ Apply [rules](../essentials/diff#rules) included with the Inspector as well as y
 [custom rules](../essentials/diff#custom-rules)
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
     rules: |
@@ -143,7 +143,7 @@ Must be used with the `rules` input. Required to apply the custom logic for the
 [`considerUsage`](../essentials/diff#considerusage) rule
 
 ```yaml
-- uses: kamilkisiela/graphql-inspector@master
+- uses: graphql-hive/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
     rules: |

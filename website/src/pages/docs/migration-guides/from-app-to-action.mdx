@@ -13,7 +13,7 @@ Action provides similar functionality and is actively maintained.
 
 <Callout type="warning">The GraphQL Inspector App has been deprecated!</Callout>
 <Callout type="info">
-  You can [visit the issue](https://github.com/kamilkisiela/graphql-inspector/issues/2648) about the
+  You can [visit the issue](https://github.com/graphql-hive/graphql-inspector/issues/2648) about the
   deprecation of the GraphQL Inspector App on GitHub
 </Callout>
 
@@ -74,7 +74,7 @@ You can customize this based on your needs.
 ### 3. Set Up the Workflow Job
 
 Inside your workflow file, add a job that checks your GraphQL schema using GraphQL Inspector. You
-can use the `kamilkisiela/graphql-inspector` action. Here's an example:
+can use the `graphql-hive/graphql-inspector` action. Here's an example:
 
 ```yaml
 jobs:
@@ -90,7 +90,7 @@ jobs:
         run: npm install
 
       - name: Run GraphQL Inspector
-        uses: kamilkisiela/graphql-inspector@v2
+        uses: graphql-hive/graphql-inspector@v2
         with:
           schema: schema.graphql
           # Additional action inputs as needed

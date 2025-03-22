@@ -5,7 +5,7 @@
     "coverage": "pnpm graphql-inspector coverage './documents/*.graphql' ./schemas/schema.graphql",
     "coverage:write": "pnpm graphql-inspector coverage './documents/*.graphql' ./schemas/schema.graphql --silent --write ./coverage.json",
     "diff": "pnpm graphql-inspector diff ./schemas/schema.graphql ./schemas/new.graphql",
-    "diff:github": "pnpm graphql-inspector diff github:kamilkisiela/graphql-inspector#master:example/schemas/schema.json ./schemas/new.graphql  --token PERSONAL_ACCESS_TOKEN",
+    "diff:github": "pnpm graphql-inspector diff github:graphql-hive/graphql-inspector#master:example/schemas/schema.json ./schemas/new.graphql  --token PERSONAL_ACCESS_TOKEN",
     "diff:json": "pnpm graphql-inspector diff ./schemas/schema.json ./schemas/new.json",
     "diff:master": "pnpm graphql-inspector diff git:master:example/schemas/schema.graphql ./schemas/schema.graphql",
     "diff:same": "pnpm graphql-inspector diff ./schemas/schema.js ./schemas/schema.graphql",

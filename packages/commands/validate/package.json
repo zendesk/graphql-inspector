@@ -5,7 +5,7 @@
   "description": "Validate Documents in GraphQL Inspector",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
+    "url": "graphql-hive/graphql-inspector",
     "directory": "packages/commands/validate"
   },
   "author": {

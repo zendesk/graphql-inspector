@@ -4,7 +4,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
+    "url": "graphql-hive/graphql-inspector",
     "directory": "packages/config"
   },
   "author": {

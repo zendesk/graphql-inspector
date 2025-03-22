@@ -55,9 +55,9 @@ env:
 ## Setting an Interceptor Logic
 
 Let's set all
-[criticality levels to Non-Breaking](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L67)
+[criticality levels to Non-Breaking](https://github.com/graphql-hive/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L67)
 and GitHub Check
-[conclusion to Success](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L33).
+[conclusion to Success](https://github.com/graphql-hive/graphql-inspector/blob/master/packages/github/src/types.ts#L33).
 
 ```js
 module.exports = (req, res) => {
@@ -99,7 +99,7 @@ interface DiffInterceptorPayload {
    */
   ref?: string
   /**
-   * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
+   * https://github.com/graphql-hive/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
    */
   changes: Change[]
 }
@@ -114,11 +114,11 @@ import { Change } from '@graphql-inspector/core'
 
 interface DiffInterceptorResponse {
   /**
-   * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L32-L36
+   * https://github.com/graphql-hive/graphql-inspector/blob/master/packages/github/src/types.ts#L32-L36
    */
   conclusion?: CheckConclusion
   /**
-   * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
+   * https://github.com/graphql-hive/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
    */
   changes: Change[]
 }

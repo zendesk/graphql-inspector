@@ -3,7 +3,7 @@
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector"
+    "url": "graphql-hive/graphql-inspector"
   },
   "author": {
     "name": "Kamil Kisiela",

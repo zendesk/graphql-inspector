@@ -26,7 +26,7 @@ const FEATURE_LIST = [
       children: 'View source code',
       title: 'View source code',
       target: '_blank',
-      href: 'https://github.com/kamilkisiela/graphql-inspector',
+      href: 'https://github.com/graphql-hive/graphql-inspector',
     },
   },
   {
@@ -68,7 +68,7 @@ const FEATURE_LIST = [
       children: 'View source code',
       title: 'View source code',
       target: '_blank',
-      href: 'https://github.com/kamilkisiela/graphql-inspector',
+      href: 'https://github.com/graphql-hive/graphql-inspector',
     },
   },
 ];
