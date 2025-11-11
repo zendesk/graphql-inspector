@@ -33,23 +33,24 @@ export async function handler(input: {
     : failOnBreakingChanges;
 
   let verboseChanges = false;
-  const rules = [...(input.rules ?? [])]
-    .filter(isString)
-    .map((name): Rule | undefined => {
-      if (name === 'verboseChanges') {
-        verboseChanges = true;
-        return;
-      }
+  const rules = (
+    await Promise.all(
+      [...(input.rules ?? [])].filter(isString).map(async (name): Promise<Rule | undefined> => {
+        if (name === 'verboseChanges') {
+          verboseChanges = true;
+          return;
+        }
 
-      const rule = resolveRule(name);
+        const rule = await resolveRule(name);
 
-      if (!rule) {
-        throw new Error(`Rule '${name}' does not exist!\n`);
-      }
+        if (!rule) {
+          throw new Error(`Rule '${name}' does not exist!\n`);
+        }
 
-      return rule;
-    })
-    .filter((f): f is NonNullable<typeof f> => !!f);
+        return rule;
+      }),
+    )
+  ).filter((f): f is NonNullable<typeof f> => !!f);
   if (!verboseChanges) {
     rules.push(DiffRule.simplifyChanges);
   }
@@ -233,10 +234,10 @@ function reportNonBreakingChanges(changes: Change[]) {
   }
 }
 
-function resolveRule(name: string): Rule | undefined {
+async function resolveRule(name: string): Promise<Rule | undefined> {
   const filepath = ensureAbsolute(name);
   if (existsSync(filepath)) {
-    return require(filepath);
+    return (await import(filepath)).default;
   }
 
   return DiffRule[name as keyof typeof DiffRule];
