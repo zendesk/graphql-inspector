@@ -1,6 +1,6 @@
 import { DirectiveLocationEnum, GraphQLArgument, GraphQLDirective, isNonNullType } from 'graphql';
 import { safeChangeForInputValue } from '../../utils/graphql.js';
-import { safeString } from '../../utils/string.js';
+import { fmt, safeString } from '../../utils/string.js';
 import {
   Change,
   ChangeType,
@@ -82,9 +82,13 @@ export function directiveAdded(
 function buildDirectiveDescriptionChangedMessage(
   args: DirectiveDescriptionChangedChange['meta'],
 ): string {
-  return `Directive '${args.directiveName}' description changed from '${
-    args.oldDirectiveDescription ?? 'undefined'
-  }' to '${args.newDirectiveDescription ?? 'undefined'}'`;
+  if (args.oldDirectiveDescription === null && args.newDirectiveDescription !== null) {
+    return `Directive '${args.directiveName}' description '${fmt(args.newDirectiveDescription)}' was added`;
+  }
+  if (args.newDirectiveDescription === null && args.oldDirectiveDescription !== null) {
+    return `Directive '${args.directiveName}' description '${fmt(args.oldDirectiveDescription)}' was removed`;
+  }
+  return `Directive '${args.directiveName}' description changed from '${fmt(args.oldDirectiveDescription ?? '')}' to '${fmt(args.newDirectiveDescription ?? '')}'`;
 }
 
 export function directiveDescriptionChangedFromMeta(args: DirectiveDescriptionChangedChange) {
@@ -314,7 +318,19 @@ export function directiveArgumentRemoved(
 function buildDirectiveArgumentDescriptionChangedMessage(
   args: DirectiveArgumentDescriptionChangedChange['meta'],
 ): string {
-  return `Description for argument '${args.directiveArgumentName}' on directive '${args.directiveName}' changed from '${args.oldDirectiveArgumentDescription}' to '${args.newDirectiveArgumentDescription}'`;
+  if (
+    args.oldDirectiveArgumentDescription === null &&
+    args.newDirectiveArgumentDescription !== null
+  ) {
+    return `Description '${fmt(args.newDirectiveArgumentDescription)}' was added to argument '${args.directiveArgumentName}' on directive '${args.directiveName}'`;
+  }
+  if (
+    args.newDirectiveArgumentDescription === null &&
+    args.oldDirectiveArgumentDescription !== null
+  ) {
+    return `Description '${fmt(args.oldDirectiveArgumentDescription)}' was removed from argument '${args.directiveArgumentName}' on directive '${args.directiveName}'`;
+  }
+  return `Description for argument '${args.directiveArgumentName}' on directive '${args.directiveName}' changed from '${fmt(args.oldDirectiveArgumentDescription ?? '')}' to '${fmt(args.newDirectiveArgumentDescription ?? '')}'`;
 }
 
 export function directiveArgumentDescriptionChangedFromMeta(
