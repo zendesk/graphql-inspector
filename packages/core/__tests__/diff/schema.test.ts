@@ -1,7 +1,5 @@
 import { buildClientSchema, buildSchema, introspectionFromSchema } from 'graphql';
 import { Change, CriticalityLevel, diff } from '../../src/index.js';
-import { findBestMatch } from '../../src/utils/string.js';
-import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing.js';
 
 test('same schema', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
@@ -69,7 +67,7 @@ test('renamed query', async () => {
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changed.message).toEqual(`Schema query root has changed from 'Query' to 'RootQuery'`);
+  expect(changed.message).toEqual(`Schema query root type was changed from 'Query' to 'RootQuery'`);
 });
 
 test('new field and field changed', async () => {
@@ -767,10 +765,10 @@ test('adding root type should not be breaking', async () => {
         "criticality": {
           "level": "NON_BREAKING",
         },
-        "message": "Schema subscription root has changed from 'unknown' to 'Subscription'",
+        "message": "Schema subscription type was set to 'Subscription'.",
         "meta": {
           "newSubscriptionTypeName": "Subscription",
-          "oldSubscriptionTypeName": "unknown",
+          "oldSubscriptionTypeName": null,
         },
         "type": "SCHEMA_SUBSCRIPTION_TYPE_CHANGED",
       },
@@ -799,6 +797,164 @@ test('adding root type should not be breaking', async () => {
         },
         "path": "Subscription.onFoo",
         "type": "FIELD_ADDED",
+      },
+    ]
+  `);
+});
+
+test('null old schema', async () => {
+  const schemaA = null;
+
+  const schemaB = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String
+    }
+
+    type Subscription {
+      onFoo: String
+    }
+  `);
+
+  const changes = await diff(schemaA, schemaB);
+  expect(changes).toMatchInlineSnapshot(`
+    [
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Schema query root type was set to 'Query'.",
+        "meta": {
+          "newQueryTypeName": "Query",
+          "oldQueryTypeName": null,
+        },
+        "type": "SCHEMA_QUERY_TYPE_CHANGED",
+      },
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Schema subscription type was set to 'Subscription'.",
+        "meta": {
+          "newSubscriptionTypeName": "Subscription",
+          "oldSubscriptionTypeName": null,
+        },
+        "type": "SCHEMA_SUBSCRIPTION_TYPE_CHANGED",
+      },
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Type 'Query' was added",
+        "meta": {
+          "addedTypeKind": "ObjectTypeDefinition",
+          "addedTypeName": "Query",
+        },
+        "path": "Query",
+        "type": "TYPE_ADDED",
+      },
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Field 'foo' was added to object type 'Query'",
+        "meta": {
+          "addedFieldName": "foo",
+          "addedFieldReturnType": "String",
+          "typeName": "Query",
+          "typeType": "object type",
+        },
+        "path": "Query.foo",
+        "type": "FIELD_ADDED",
+      },
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Type 'Subscription' was added",
+        "meta": {
+          "addedTypeKind": "ObjectTypeDefinition",
+          "addedTypeName": "Subscription",
+        },
+        "path": "Subscription",
+        "type": "TYPE_ADDED",
+      },
+      {
+        "criticality": {
+          "level": "NON_BREAKING",
+        },
+        "message": "Field 'onFoo' was added to object type 'Subscription'",
+        "meta": {
+          "addedFieldName": "onFoo",
+          "addedFieldReturnType": "String",
+          "typeName": "Subscription",
+          "typeType": "object type",
+        },
+        "path": "Subscription.onFoo",
+        "type": "FIELD_ADDED",
+      },
+    ]
+  `);
+});
+
+test('null new schema', async () => {
+  const schemaA = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String
+    }
+
+    type Subscription {
+      onFoo: String
+    }
+  `);
+
+  const schemaB = null;
+
+  const changes = await diff(schemaA, schemaB);
+  expect(changes).toMatchInlineSnapshot(`
+    [
+      {
+        "criticality": {
+          "level": "BREAKING",
+        },
+        "message": "Schema query root type 'Query' was removed.",
+        "meta": {
+          "newQueryTypeName": null,
+          "oldQueryTypeName": "Query",
+        },
+        "type": "SCHEMA_QUERY_TYPE_CHANGED",
+      },
+      {
+        "criticality": {
+          "level": "BREAKING",
+        },
+        "message": "Schema subscription type 'Subscription' was removed.",
+        "meta": {
+          "newSubscriptionTypeName": null,
+          "oldSubscriptionTypeName": "Subscription",
+        },
+        "type": "SCHEMA_SUBSCRIPTION_TYPE_CHANGED",
+      },
+      {
+        "criticality": {
+          "level": "BREAKING",
+        },
+        "message": "Type 'Query' was removed",
+        "meta": {
+          "removedTypeName": "Query",
+        },
+        "path": "Query",
+        "type": "TYPE_REMOVED",
+      },
+      {
+        "criticality": {
+          "level": "BREAKING",
+        },
+        "message": "Type 'Subscription' was removed",
+        "meta": {
+          "removedTypeName": "Subscription",
+        },
+        "path": "Subscription",
+        "type": "TYPE_REMOVED",
       },
     ]
   `);
