@@ -1,3 +1,6 @@
+import { parse, print } from 'graphql';
+import { Change } from '@graphql-inspector/core';
+import { errors, patch } from '../src/index.js';
 import {
   expectDiffAndPatchToMatch,
   expectDiffAndPatchToPass,
@@ -475,5 +478,26 @@ describe('repeat directives', () => {
       }
     `;
     await expectDiffAndPatchToMatch(before, after);
+  });
+
+  test('Schema Extensions can be used with directives', async () => {
+    const before = `
+      extend schema @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key", "@external"])
+
+      type Query {
+        text: Boolean
+      }
+    `;
+
+    const changes: Change<any>[] = [];
+
+    expect(print(patch(parse(before), changes, { onError: errors.looseErrorHandler })))
+      .toMatchInlineSnapshot(`
+        "extend schema @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key", "@external"])
+
+        type Query {
+          text: Boolean
+        }"
+      `);
   });
 });
