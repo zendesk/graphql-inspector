@@ -54,20 +54,40 @@ export function buildInputFieldAddedMessage(args: InputFieldAddedChange['meta'])
 }
 
 export function inputFieldAddedFromMeta(args: InputFieldAddedChange) {
+  let criticality: {
+    level: CriticalityLevel;
+    reason?: string;
+  };
+  const addedNullableWithoutDefault =
+    args.meta.isAddedInputFieldTypeNullable && args.meta.addedFieldDefault === undefined;
+
+  if (args.meta.addedToNewType) {
+    criticality = {
+      level: CriticalityLevel.NonBreaking,
+      reason: 'The field is being added to a new type.',
+    };
+  } else if (addedNullableWithoutDefault) {
+    criticality = {
+      level: CriticalityLevel.NonBreaking,
+      reason: 'The field is nullable and no default is set.',
+    };
+  } else if (args.meta.addedFieldDefault === undefined) {
+    criticality = {
+      level: CriticalityLevel.Breaking,
+      reason:
+        'Adding a required input field to an existing input object type is a breaking change because it will cause existing uses of this input object type to error.',
+    };
+  } else {
+    criticality = {
+      level: CriticalityLevel.Dangerous,
+      reason:
+        'Adding a field with a default value can change runtime behavior for clients that previously omitted it, and during rolling deploys consumers may receive the new default before producers are ready to handle it.',
+    };
+  }
+
   return {
     type: ChangeType.InputFieldAdded,
-    criticality:
-      args.meta.addedToNewType ||
-      args.meta.isAddedInputFieldTypeNullable ||
-      args.meta.addedFieldDefault !== undefined
-        ? {
-            level: CriticalityLevel.NonBreaking,
-          }
-        : {
-            level: CriticalityLevel.Breaking,
-            reason:
-              'Adding a required input field to an existing input object type is a breaking change because it will cause existing uses of this input object type to error.',
-          },
+    criticality,
     message: buildInputFieldAddedMessage(args.meta),
     meta: args.meta,
     path: [args.meta.inputName, args.meta.addedInputFieldName].join('.'),
