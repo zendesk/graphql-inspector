@@ -19,6 +19,10 @@ inputs:
       or conclusion. Setting annotations to false disables all inline annotations.
     default: all
     required: false
+  create-action-check:
+    description: |
+      Create Github Action check with summary. When disabled, annotations are disabled too. (enabled by default)
+      It can be useful to disable, when running on master branch or similar. And when subsequent step is using output and annotations nor check is required.
   fail-on-breaking:
     description: Fail on breaking changes (enabled by default)
   approve-label:
@@ -63,6 +67,12 @@ inputs:
 outputs:
   changes:
     description: Total number of changes
+  breaking-changes:
+    description: List of breaking changes. Each item is message string.
+  dangerous-changes:
+    description: List of dangerous changes. Each item is message string.
+  safe-changes:
+    description: List of safe changes. Each item is message string.
 runs:
   using: node24
   main: action/index.js
